@@ -652,6 +652,83 @@ That's it! You've successfully installed and set up Grafana to work with Prometh
     - Set up email notifications in Jenkins or other notification mechanisms.
 
 # Phase 6: Kubernetes
+# minicube installation
+
+To install Minikube on Linux Ubuntu, follow these steps:
+
+### Step 1: Install Dependencies
+
+Ensure your system is up to date and install necessary dependencies:
+
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install -y curl apt-transport-https
+```
+
+### Step 2: Install Docker
+
+Minikube requires a container runtime to run Kubernetes components. Docker is a popular choice.
+
+```bash
+sudo apt-get install -y docker.io
+```
+
+Start Docker and enable it to start on boot:
+
+```bash
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+
+### Step 3: Install Minikube
+
+Download the Minikube binary and move it to your `PATH`:
+
+```bash
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+```
+
+### Step 4: Install kubectl
+
+`kubectl` is the command-line tool for interacting with Kubernetes clusters.
+
+```bash
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+```
+
+### Step 5: Start Minikube
+
+Start Minikube with Docker as the driver:
+
+```bash
+minikube start --driver=docker
+```
+
+### Step 6: Verify Installation
+
+Check the status of Minikube and the Kubernetes cluster:
+
+```bash
+minikube status
+kubectl get nodes
+```
+
+You should see output indicating that Minikube is running and that a Kubernetes node is ready.
+
+### Optional: Enable Minikube Dashboard
+
+Minikube includes a handy web-based dashboard for managing your cluster:
+
+```bash
+minikube dashboard
+```
+
+This command will open the dashboard in your default web browser.
+
+That's it! You have successfully installed Minikube on your Ubuntu system.
 
 ## Create Kubernetes Cluster with Nodegroups
 
